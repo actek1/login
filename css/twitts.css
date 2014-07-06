@@ -1,0 +1,16 @@
+#twitts_box{
+	height: 45%;
+	overflow: auto;
+}
+
+#name{
+	color: blue;
+	font-family: cursive;
+    font-weight: bolder;
+}
+#text{
+
+}
+#date{
+	font-size: 10px;
+}
