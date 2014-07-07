@@ -1,0 +1,57 @@
+<html ng-app>
+    <head>
+        <title>Login</title>
+		<meta charset="utf-8"> 
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/twitts.css" />
+		<script type="text/javascript" src="angular/angular.min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+    </head>
+    <body ng-controller="LoginController as login">
+        <section class="container">
+            <form class="form-horizontal" ng-submit='Register();'>
+				<fieldset>
+
+				<!-- Form Name -->
+				<legend>Registro</legend>
+
+				<!-- Text input-->
+				<div class="control-group">
+				  <label class="control-label" for="">Nombre de Usuario</label>
+				  <div class="controls">
+					<input ng-model="username" class="input-xlarge" required="" type="text">
+					
+				  </div>
+				</div>
+
+				<!-- Password input-->
+				<div class="control-group">
+				  <label class="control-label" for="passwordinput">Password</label>
+				  <div class="controls">
+					<input ng-model="password" class="input-xlarge" required="" type="password">
+					
+				  </div>
+				</div>
+
+				<!-- Text input-->
+				<div class="control-group">
+				  <label class="control-label" for="">E-mail</label>
+				  <div class="controls">
+					<input ng-model="email" class="input-xlarge" type="text">
+					
+				  </div>
+				</div>
+				
+				<!-- Button -->
+					<div class="control-group">
+					  <label class="control-label" for=""></label>
+					  <div class="controls">
+						<button type="submit" class="btn btn-success">Registrar</button>
+					  </div>
+					</div>
+
+				</fieldset>
+			</form>
+		</section>
+    </body>
+</html>

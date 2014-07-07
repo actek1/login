@@ -21,5 +21,17 @@ function LoginController($scope, $http) {
 		}).error(function(data, status) {
 		   alert(status);
 		});
+	};	
+	
+	$scope.Register = function() {
+		$http.post('insert_user.php', {'uname': $scope.username, 'pswd': $scope.password, 'email': $scope.email},
+		{headers: {'Accept': 'application/json'}}
+		).success(function(data, status, headers, config) {
+				//alert(); 
+				console.log(data);
+		}).error(function(data, status) {
+		   alert(status);
+		});
+	
 	};
 }

@@ -23,7 +23,7 @@ while($ROW = $SQL->fetch_assoc())
 	//Check username and password
 	if($usrname == $db_data[$i]['uname'])
 	{
-		if($upswd == $db_data[$i]['pswd'])
+		if(crypt($upswd, $db_data[$i]['pswd']) == $db_data[$i]['pswd'])
 		{
 			//all correct
 			$status['value'] = '0';
@@ -37,7 +37,7 @@ while($ROW = $SQL->fetch_assoc())
 		}
 	}
 	else
-		if($upswd == $db_data[$i]['pswd'])
+		if(crypt($upswd, $db_data[$i]['pswd']) == $db_data[$i]['pswd'])
 		{
 			//wrong username
 			$status['value'] = '2';
