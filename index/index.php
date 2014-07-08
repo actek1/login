@@ -2,7 +2,7 @@
     <head>
         <title>Login</title>
 		<meta charset="utf-8"> 
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="/login/bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/twitts.css" />
 		<script type="text/javascript" src="angular/angular.min.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>
