@@ -7,6 +7,7 @@ header('Content-type: application/json');
 $data = json_decode(file_get_contents("php://input"));
 $usrname = mysql_real_escape_string($data->uname);
 $upswd = mysql_real_escape_string($data->pswd);
+$access_code = 'Credenciales no validas';
 
 //encrypt password
 //$upswd = Encrypter::encrypt($upswd);
@@ -27,6 +28,7 @@ while($ROW = $SQL->fetch_assoc())
 		{
 			//all correct
 			$status['value'] = '0';
+			$access_code = generate_access_token($ROW);
 			break;
 		}
 		else
@@ -51,13 +53,21 @@ while($ROW = $SQL->fetch_assoc())
 	$i++;
 }
 
-//echo $db_data[1]['uname'].'  ';
-//echo $db_data[1]['pswd'].'  ';
+function generate_access_token($data_user){
+	//Get from database
+	$user = array();
+	$user[] = $data_user['id_user'];
+	$user[] = $data_user['username'];
+	$user[] = $data_user['email'];
+	$user[] = $data_user['created'];
+	$user[] = time() + 3600;
+	$user[] = md5(implode('',$user));
+	return array('res' => implode('|', $user));
+}
 
+print json_encode($access_code);
 
-//$mysqli->query("INSERT INTO tabla VALUES(".json_encode($array).")";
-//return json string
-print json_encode($status);
+//print json_encode($status);
 
 mysqli_close($conection);	
 ?>
