@@ -19,7 +19,8 @@ function LoginController($scope, $http) {
 				alert(data.access_code); 
 				console.log(data);
 		}).error(function(data, status) {
-		   alert(status);
+		   console.log(data);
+		   alert(data.error);
 		});
 	};	
 	
