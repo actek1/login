@@ -2,7 +2,9 @@ RewriteEngine on
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.+)\.(\d+)\.(js|css|png|jpg|gif)$ $1.$3 [L]
-RewriteRule ^(.*)$ $1.php
+
+RewriteCond $1 !^(images|js|admin|themes|robots\.txt|index\.php) [NC]
+
+#RewriteRule ^(.*)$ $1.php
 RewriteRule . index.php [L]
 

@@ -16,7 +16,7 @@ $data->pswd = $upswd;
 
 $SQL = $conection->query("SELECT * FROM user");
 
-$status = array();
+$status = array('value' => '3', 'access_code' => 'Credenciales incorrectas');
 $i=0;
 while($ROW = $SQL->fetch_assoc())
 {
@@ -28,7 +28,7 @@ while($ROW = $SQL->fetch_assoc())
 		{
 			//all correct
 			$status['value'] = '0';
-			$access_code = generate_access_token($ROW);
+			$status['access_code'] = generate_access_token($ROW);
 			break;
 		}
 		else
@@ -63,12 +63,12 @@ function generate_access_token($data_user){
 	$user[] = date("H:i:s");
 	$user[] = date("H:i:s", strtotime('+30 minutes'));
 	$user[] = md5(implode('',$user));
-	return array('res' => implode('|', $user));
+	//return array('res' => implode('|', $user));
+	return implode('|', $user);
 }
 
-print json_encode($access_code);
-
-//print json_encode($status);
+//print json_encode($access_code);
+print json_encode($status);
 
 mysqli_close($conection);	
 ?>

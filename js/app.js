@@ -1,10 +1,10 @@
 function LoginController($scope, $http) {
 
 	$scope.SignUp = function() {
-		$http.post('login.php', {'uname': $scope.username, 'pswd': $scope.password},
+		$http.post('/login/jaguar/login/', {'uname': $scope.username, 'pswd': $scope.password},
 		{headers: {'Accept': 'application/json'}}
 		).success(function(data, status, headers, config) {
-				
+		
 				switch(data.value)
 				{
 					case '0': alert('Datos correctos');
@@ -16,7 +16,7 @@ function LoginController($scope, $http) {
 					case '3': alert('Username y Password Incorrecto');
 					break;
 				}
-				//alert(); 
+				alert(data.access_code); 
 				console.log(data);
 		}).error(function(data, status) {
 		   alert(status);
