@@ -16,6 +16,7 @@ if($contentType !== 'application/json;charset=utf-8' && $contentType !== 'applic
 $data = json_decode(file_get_contents("php://input"));
 $usrname = mysql_real_escape_string($data->uname);
 $upswd = mysql_real_escape_string($data->pswd);
+//vars declared
 $access_code = 'Credenciales no validas';
 $status = array('value' => '3', 'access_code' => 'Credenciales incorrectas');
 $i=0;
@@ -25,7 +26,7 @@ $connection = new mySql();
 $connection->connect();
 
 //query
-$result = $connection->query("SELECT * FROM user");
+$result = $connection->query("SELECT id_user, username, pass, email, json, created FROM user");
 
 while($ROW = $connection->fetch($result))
 {
