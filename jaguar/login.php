@@ -1,7 +1,7 @@
 <?php
 require('encrypt.php');
 require('Token.php');
-include "conection.php";
+require_once('connect.php');
 header('Content-type: application/json');
 
 //Content-Type Validation
@@ -17,17 +17,17 @@ $data = json_decode(file_get_contents("php://input"));
 $usrname = mysql_real_escape_string($data->uname);
 $upswd = mysql_real_escape_string($data->pswd);
 $access_code = 'Credenciales no validas';
-
-//save new password
-$data->pswd = $upswd;
-
-$SQL = $conection->query("SELECT * FROM user") or die ("Error al realizar el query");
-
-//initialize status array
 $status = array('value' => '3', 'access_code' => 'Credenciales incorrectas');
 $i=0;
 
-while($ROW = $SQL->fetch_assoc())
+//create new connection
+$connection = new mySql();
+$connection->connect();
+
+//query
+$result = $connection->query("SELECT * FROM user");
+
+while($ROW = $connection->fetch($result))
 {
 	$db_data[$i] = json_decode($ROW['json'],true);
 	//Check username and password
@@ -51,7 +51,7 @@ while($ROW = $SQL->fetch_assoc())
 		if(crypt($upswd, $db_data[$i]['pswd']) == $db_data[$i]['pswd'])
 		{
 			//wrong username
-			$status['value'] = 2;
+			$status['value'] = '2';
 			break;
 		}
 		else
@@ -62,7 +62,7 @@ while($ROW = $SQL->fetch_assoc())
 	$i++;
 }
 
-mysqli_close($conection);
-
+//close
+$connection->close();
 print json_encode($status);
 ?>
