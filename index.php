@@ -8,11 +8,16 @@
 		"/login/jaguar/loginView/" 	=> "/jaguar/loginView.php",
 	);
 	foreach($uri as $origin => $destiny){
-		//echo $destiny." - ".$origin."<br>";
 		if($origin == $url){
-			include($destiny);
-			//echo $destiny."<br>";
+			include_once($destiny);
+			if ($destiny == "/jaguar/about.php"){
+				$obj = new About();
+				break;
+			}
+			if($destiny == "/jaguar/image.php"){
+				$obj = new Image();
+				break;
+			}
 		}
 	}
-	//echo $url."<br>";
 ?>

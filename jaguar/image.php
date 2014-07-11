@@ -1,4 +1,8 @@
 <?php
 	include("process_encode.php");
-	echo $base64;
+	class Image{	
+		function __construct(){
+			echo ProcessEncode::encode();
+		}
+	}
 ?>
