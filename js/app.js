@@ -1,10 +1,10 @@
 function LoginController($scope, $http) {
 
-	$scope.SignUp = function() {
-		$http.post('/login/jaguar/login/', {'uname': $scope.username, 'pswd': $scope.password},
+	$scope.SignUp = function(login) {
+		$http.post('/login/jaguar/login/', {'uname': login.username, 'pswd': login.password},
 		{headers: {'Accept': 'application/json'}}
 		).success(function(data, status, headers, config) {
-		
+				$scope.login = {};
 				switch(data.value)
 				{
 					case '0': alert('Datos correctos');
@@ -24,11 +24,12 @@ function LoginController($scope, $http) {
 		});
 	};	
 	
-	$scope.Register = function() {
-		$http.post('insert_user.php', {'uname': $scope.username, 'pswd': $scope.password, 'email': $scope.email},
+	$scope.Register = function(login) {
+		$http.post('/login/jaguar/user/new/', {'uname': login.username, 'pswd': login.password, 'email': login.email},
 		{headers: {'Accept': 'application/json'}}
 		).success(function(data, status, headers, config) {
-				//alert(); 
+				$scope.login = {};
+				alert('Usuario Registrado Correctamente'); 
 				console.log(data);
 		}).error(function(data, status) {
 		   alert(status);

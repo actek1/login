@@ -8,7 +8,7 @@
     </head>
     <body ng-controller="LoginController as login">
         <section class="container">
-            <form class="form-horizontal">
+            <form class="form-horizontal" name="loginForm">
 				<fieldset>
 					<!-- Form Name -->
 					<legend>Login</legend>
@@ -17,7 +17,7 @@
 					<div class="control-group">
 					  <label class="control-label">Usuario</label>
 					  <div class="controls">
-						<input type="text" ng-model="username" placeholder="Username" class="input-medium">
+						<input type="text" ng-model="login.username" placeholder="Username" class="input-medium" required>
 						
 					  </div>
 					</div>
@@ -26,7 +26,7 @@
 					<div class="control-group">
 					  <label class="control-label">Contraseña</label>
 					  <div class="controls">
-						<input type="password" ng-model="password" placeholder="Password" class="input-medium">
+						<input type="password" ng-model="login.password" placeholder="Password" class="input-medium" required>
 						
 					  </div>
 					</div>
@@ -35,7 +35,7 @@
 					<div class="control-group">
 					  <label class="control-label" for=""></label>
 					  <div class="controls">
-						<button ng-click='SignUp();' class="btn btn-success">Enviar</button>
+						<button ng-disabled="!loginForm.$valid" ng-click='SignUp(login);' class="btn btn-success">Enviar</button>
 					  </div>
 					</div>
 				</fieldset>

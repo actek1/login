@@ -1,5 +1,4 @@
 <?php
-require('encrypt.php');
 require('Token.php');
 require_once('connect.php');
 header('Content-type: application/json');
@@ -14,8 +13,11 @@ if($contentType !== 'application/json;charset=utf-8' && $contentType !== 'applic
 
 //Password and Username received
 $data = json_decode(file_get_contents("php://input"));
+//white space content data validation
+if( trim($data->uname) == '' || trim($data->pswd == '')) die('Error al recivir los datos');
 $usrname = mysql_real_escape_string($data->uname);
 $upswd = mysql_real_escape_string($data->pswd);
+
 //vars declared
 $access_code = 'Credenciales no validas';
 $status = array('value' => '3', 'access_code' => 'Credenciales incorrectas');
@@ -53,7 +55,6 @@ while($ROW = $connection->fetch($result))
 		{
 			//wrong username
 			$status['value'] = '2';
-			break;
 		}
 		else
 		{

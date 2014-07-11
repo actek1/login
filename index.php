@@ -6,6 +6,8 @@
 		"/login/jaguar/about/" 	=> "/jaguar/about.php",
 		"/login/jaguar/login/" 	=> "/jaguar/login.php",
 		"/login/jaguar/loginView/" 	=> "/jaguar/loginView.php",
+		"/login/jaguar/user/" 	=> "/jaguar/user.php",
+		"/login/jaguar/user/new/" 	=> "/jaguar/insert_user.php",
 	);
 	foreach($uri as $origin => $destiny){
 		if($origin == $url){
